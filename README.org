@@ -2,7 +2,12 @@
 
 ** summary
 
-This is a description of project freehand.
+Golang doesn't have named parameters.
+
+What are 5 ways to simulate named parameters.
+
+My goal is to improve readability of code using named parameters
+similar to what python offers.
 
 ** usage
 
