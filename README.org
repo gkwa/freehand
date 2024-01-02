@@ -1,0 +1,14 @@
+* freehand
+
+** summary
+
+This is a description of project freehand.
+
+** usage
+
+Example:
+#+begin_example
+make test
+./freehand --help
+./freehand --verbose --verbose # for debug
+#+end_example
