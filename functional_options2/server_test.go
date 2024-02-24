@@ -75,3 +75,50 @@ func TestNewServer_WithOptions(t *testing.T) {
 		t.Errorf("Expected protocol to be https, got %s", server.Config.Protocol)
 	}
 }
+
+type mockSetOptioner struct {
+	optionsApplied []ServerOption
+}
+
+func (m *mockSetOptioner) SetOption(opt ServerOption) {
+	m.optionsApplied = append(m.optionsApplied, opt)
+}
+
+func TestSetOptioner_SetOption(t *testing.T) {
+	// Create a mockSetOptioner instance
+	mock := &mockSetOptioner{}
+
+	// Define some options
+	option1 := WithHost("example.com")
+	option2 := WithPort(8081)
+	option3 := WithProtocol("https")
+
+	// Apply options using the SetOption method
+	mock.SetOption(option1)
+	mock.SetOption(option2)
+	mock.SetOption(option3)
+
+	// Verify that options are applied correctly
+	if len(mock.optionsApplied) != 3 {
+		t.Errorf("Expected 3 options to be applied, got %d", len(mock.optionsApplied))
+	}
+
+	// Create a ServerConfig to apply the options to
+	config := &ServerConfig{}
+	for _, opt := range mock.optionsApplied {
+		opt(config)
+	}
+
+	if config.Host != "example.com" {
+		t.Errorf("Expected host to be example.com, got %s", config.Host)
+	}
+
+	if config.Port != 8081 {
+		t.Errorf("Expected port to be 8081, got %d", config.Port)
+	}
+
+	if config.Protocol != "https" {
+		t.Errorf("Expected protocol to be https, got %s", config.Protocol)
+	}
+}
+

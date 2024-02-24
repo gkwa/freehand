@@ -64,6 +64,16 @@ func NewServer(opts ...ServerOption) *Server {
 	}
 }
 
+// SetOptioner defines an interface for setting a single option.
+type SetOptioner interface {
+	SetOption(ServerOption)
+}
+
+// SetOption implements the SetOption method for ServerConfig.
+func (c *ServerConfig) SetOption(opt ServerOption) {
+	opt(c)
+}
+
 func RunTest() {
 	// Create a server with default configuration
 	server1 := NewServer()
