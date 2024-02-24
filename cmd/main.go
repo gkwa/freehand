@@ -21,8 +21,8 @@ func main() {
 
 	map_parameters.MyFunctionMapParams(
 		map[string]interface{}{
-			"Param1": 42, 
-			"Param2": "hello", 
+			"Param1": 42,
+			"Param2": "hello",
 			"Param3": true,
 		},
 	)
